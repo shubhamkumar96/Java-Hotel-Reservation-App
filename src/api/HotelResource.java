@@ -14,24 +14,24 @@ public class HotelResource {
         return CustomerService.getCustomer(email);
     }
 
-    public static void createCustomer(String email, String firstName, String lastName) {
+    public void createCustomer(String email, String firstName, String lastName) {
         CustomerService.addCustomer(email, firstName, lastName);
     }
 
-    public static IRoom getRoom(String roomNumber) {
+    public IRoom getRoom(String roomNumber) {
         return ReservationService.getARoom(roomNumber);
     }
 
-    public static Reservation bookARoom(String customerEmail, IRoom room, Date checkInDate, Date checkOutDate) {
+    public Reservation bookARoom(String customerEmail, IRoom room, Date checkInDate, Date checkOutDate) {
         Customer customer = CustomerService.getCustomer(customerEmail);
         return ReservationService.reserveARoom(customer, room, checkInDate, checkOutDate);
     }
 
-    public static Collection<Reservation> getCustomersReservations(String customerEmail) {
+    public Collection<Reservation> getCustomersReservations(String customerEmail) {
         return ReservationService.getCustomersReservation(CustomerService.getCustomer(customerEmail));
     }
 
-    public static Collection<IRoom> findARoom(Date checkInDate, Date checkOutDate) {
+    public Collection<IRoom> findARoom(Date checkInDate, Date checkOutDate) {
         return ReservationService.findRooms(checkInDate, checkOutDate);
     }
 }

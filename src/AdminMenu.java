@@ -1,4 +1,5 @@
 import api.AdminResource;
+import model.Customer;
 import model.IRoom;
 import model.Room;
 import model.RoomType;
@@ -24,16 +25,22 @@ public class AdminMenu {
                 int userInput = Integer.parseInt(scanner.nextLine());
                 switch(userInput) {
                     case 1:
-                        System.out.println("Selected Choice: " + userInput);
-                        takeInput = false;
+                        Collection<Customer> customers = adminResource.getAllCustomers();
+                        for(Customer customer : customers) {
+                            System.out.println(customer);
+                        }
                         break;
                     case 2:
                         System.out.println("All Rooms in the Hotel :");
                         Collection<IRoom> allRooms = adminResource.getAllRooms();
+                        if(allRooms.size() == 0) {
+                            System.out.println("No Rooms Added Yet.\n");
+                            break;
+                        }
                         for(IRoom room:allRooms) {
                             System.out.println(room);
                         }
-                        takeInput = false;
+                        System.out.println("");
                         break;
                     case 3:
                         System.out.println("Selected Choice: " + userInput);
@@ -67,7 +74,7 @@ public class AdminMenu {
                             Room room = new Room(roomNumber, price, roomType);
                             rooms.add(room);
                             adminResource.addRoom(rooms);
-                            System.out.println("Below Room Added:");
+                            System.out.println("Below Rooms Added:");
                             System.out.println(room + "\n");
                             System.out.println("Would you like to add another room: y/n ?");
                             String yesNo = scanner.nextLine();
