@@ -13,7 +13,6 @@ public class MainMenu {
                 System.out.println("4. Admin Menu");
                 System.out.println("5. Exit");
                 int userInput = Integer.parseInt(scanner.nextLine());
-
                 while(takeInput) {
                     switch(userInput) {
                         case 1:
@@ -30,7 +29,6 @@ public class MainMenu {
                             break;
                         case 4:
                             AdminMenu.main(null);
-                            System.out.println("Selected Choice: " + userInput);
                             takeInput = false;
                             break;
                         case 5:

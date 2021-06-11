@@ -4,12 +4,14 @@ import model.Room;
 import model.RoomType;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
 public class AdminMenu {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        AdminResource adminResource = new AdminResource();
         boolean takeInput = true;
         try{
             while(takeInput) {
@@ -26,7 +28,11 @@ public class AdminMenu {
                         takeInput = false;
                         break;
                     case 2:
-                        System.out.println("Selected Choice: " + userInput);
+                        System.out.println("All Rooms in the Hotel :");
+                        Collection<IRoom> allRooms = adminResource.getAllRooms();
+                        for(IRoom room:allRooms) {
+                            System.out.println(room);
+                        }
                         takeInput = false;
                         break;
                     case 3:
@@ -60,7 +66,6 @@ public class AdminMenu {
                             List<IRoom> rooms = new ArrayList<>();
                             Room room = new Room(roomNumber, price, roomType);
                             rooms.add(room);
-                            AdminResource adminResource = new AdminResource();
                             adminResource.addRoom(rooms);
                             System.out.println("Below Room Added:");
                             System.out.println(room + "\n");
