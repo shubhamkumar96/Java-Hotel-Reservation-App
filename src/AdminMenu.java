@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class AdminMenu {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        AdminResource adminResource = new AdminResource();
+        AdminResource adminResource = AdminResource.getInstance();
         boolean takeInput = true;
         try{
             while(takeInput) {

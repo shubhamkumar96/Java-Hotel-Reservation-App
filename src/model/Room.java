@@ -2,23 +2,23 @@ package model;
 
 public class Room implements IRoom{
     String roomNumber;
-    Double price;
-    RoomType enumeration;
+    Double roomPrice;
+    RoomType roomType;
 
-    public Room(String roomNumber, Double price, RoomType enumeration) {
+    public Room(String roomNumber, Double roomPrice, RoomType roomType) {
         this.roomNumber = roomNumber;
-        this.price = price;
-        this.enumeration = enumeration;
+        this.roomPrice = roomPrice;
+        this.roomType = roomType;
     }
 
     public String getRoomNumber() {
         return roomNumber;
     }
     public Double getRoomPrice(){
-        return price;
+        return roomPrice;
     }
     public RoomType getRoomType(){
-        return enumeration;
+        return roomType;
     }
     public boolean isFree(){
         return true;
@@ -28,8 +28,8 @@ public class Room implements IRoom{
     public String toString() {
         return "Room{" +
                 "RoomNumber='" + roomNumber + '\'' +
-                ", Price(in $)=" + price + " per night" +
-                ", Type=" + enumeration +
+                ", Price(in $)=" + roomPrice + " per night" +
+                ", Type=" + roomType +
                 '}';
     }
 }
