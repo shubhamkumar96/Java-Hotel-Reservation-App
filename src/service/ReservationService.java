@@ -47,6 +47,10 @@ public class ReservationService {
     }
 
     public void printAllReservation() {
+        if(reservations.size() == 0) {
+            System.out.println("No Reservations Made Yet.\n");
+            return;
+        }
         for(Reservation reservation : reservations) {
             System.out.println(reservation);
         }
