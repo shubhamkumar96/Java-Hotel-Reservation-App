@@ -61,14 +61,26 @@ public class ReservationService {
     }
 
     public Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
-        List<IRoom> availableRooms = new ArrayList<>();
+        Collection<IRoom> availableRooms;
+        // Create a Set of available rooms that contains all the rooms.
+        Map<String, IRoom> availableRoomsMap = new HashMap<>(rooms);
+        // Now remove all the rooms that are present in reservation and has checkin and checkout
+        // date in between given 'checkInDate' & 'checkOutDate' dates.
         for(Reservation reservation:reservations) {
-            if((reservation.getCheckInDate()).compareTo(checkInDate) >= 0) {
-                if((reservation.getCheckOutDate()).compareTo(checkOutDate) <= 0) {
-                    availableRooms.add(reservation.getRoom());
-                }
+            IRoom room = reservation.getRoom();
+            String roomNumber = room.getRoomNumber();
+            Date reserveCheckInDate = reservation.getCheckInDate();
+            Date reserveCheckOutDate = reservation.getCheckOutDate();
+            if( (availableRoomsMap.get(roomNumber) != null) &&
+                    (
+                            (reserveCheckInDate.after(checkInDate) && reserveCheckInDate.before(checkOutDate))
+                            || (reserveCheckOutDate.after(checkInDate) && reserveCheckOutDate.before(checkOutDate))
+                    )
+            ) {
+                availableRoomsMap.remove(roomNumber);
             }
         }
+        availableRooms = availableRoomsMap.values();
         return availableRooms;
     }
 }

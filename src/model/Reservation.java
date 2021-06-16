@@ -54,6 +54,7 @@ public class Reservation {
         return "Reservation For Customer: " +
                 customer.getFirstName() + " " +
                 customer.getLastName() + ", " +
+                "With Room Number: " + getRoom().getRoomNumber() + ", " +
                 "From Date: " + checkInDate + " to " +
                 checkOutDate ;
     }
