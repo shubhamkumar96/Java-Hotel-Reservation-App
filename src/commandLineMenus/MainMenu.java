@@ -1,3 +1,5 @@
+package commandLineMenus;
+
 import api.AdminResource;
 import api.HotelResource;
 import model.Customer;
@@ -17,7 +19,7 @@ public class MainMenu {
     private static HotelResource hotelResource = HotelResource.getInstance();
     private static AdminResource adminResource = AdminResource.getInstance();
 
-    public static void main(String[] args) {
+    public static void mainMenu() {
             try{
                 while(true) {
                     optionsMainMenu();
@@ -114,7 +116,7 @@ public class MainMenu {
                         Customer customer = adminResource.getCustomer(emailText);
                         if(customer == null ) {
                             System.out.println("Entered Email is not registered with us.");
-                            MainMenu.main(null);
+                            continue;
                         } else {
                             System.out.println(customer);
                             System.out.println("What Room Number would you like to reserve.");
@@ -130,6 +132,7 @@ public class MainMenu {
                             }
                             if(room == null) {
                                 System.out.println("Entered Room Number is not available for reservation.");
+                                findAndReserveARoom();
                             } else {
                                 Reservation reservationDone = hotelResource.bookARoom(emailText, room, checkInDate, checkOutDate);
                                 System.out.println("Reservation Done:");
@@ -143,6 +146,8 @@ public class MainMenu {
                     }
                 }
                 break;
+            } else if(yesNo.equalsIgnoreCase("n")) {
+                MainMenu.mainMenu();
             } else {
                 System.out.println("Invalid Input.");
             }

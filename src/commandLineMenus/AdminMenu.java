@@ -1,3 +1,5 @@
+package commandLineMenus;
+
 import api.AdminResource;
 import model.*;
 
@@ -29,7 +31,7 @@ public class AdminMenu {
                         addARoom();
                         break;
                     case 5:
-                        MainMenu.main(null);
+                        MainMenu.mainMenu();
                         break;
                     default:
                         System.out.println("Please Enter a Number between 1 to 5 \n");

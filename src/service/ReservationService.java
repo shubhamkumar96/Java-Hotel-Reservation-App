@@ -73,8 +73,8 @@ public class ReservationService {
             Date reserveCheckOutDate = reservation.getCheckOutDate();
             if( (availableRoomsMap.get(roomNumber) != null) &&
                     (
-                            (reserveCheckInDate.after(checkInDate) && reserveCheckInDate.before(checkOutDate))
-                            || (reserveCheckOutDate.after(checkInDate) && reserveCheckOutDate.before(checkOutDate))
+                            (reserveCheckInDate.getTime()>=checkInDate.getTime() && reserveCheckInDate.getTime()<=checkOutDate.getTime())
+                            || (reserveCheckOutDate.getTime()>=checkInDate.getTime() && reserveCheckOutDate.getTime()<=checkOutDate.getTime())
                     )
             ) {
                 availableRoomsMap.remove(roomNumber);
